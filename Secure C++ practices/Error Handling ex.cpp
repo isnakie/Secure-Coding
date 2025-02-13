@@ -14,7 +14,8 @@ if (p) {
 }
 
 /*
-An example of wrong useage of assert
+An example of wrong useage of assert.
+The code only checks for file during debug, but once debug goes away, there's no actual file checking
 */
 
 DWORD OpenFileContents(char *szFilename) {
@@ -30,7 +31,7 @@ DWORD OpenFileContents(char *szFilename) {
 
 
 /*
-Better example of same concept
+Better example of first concept concept
 */
 
 #include <cstring>
@@ -54,3 +55,18 @@ int main() {
 
     return 0;
 }
+
+/*
+Better example of second concept
+*/
+
+DWORD OpenFileContents(char *szFilename) {
+    if (szFilename == NULL || strlen(szFile) <= 3)
+        return ERROR_BAD_ARGUMENTS;
+    FILE *f = fopen(szFilename,′r′);
+    if (f == NULL)
+        return ERROR_FILE_NOT_FOUND;
+
+      // Do work on the file
+
+       return 1;
